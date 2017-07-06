@@ -52,8 +52,13 @@ GEM
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
     execjs (2.7.0)
+    font-awesome-rails (4.7.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    glyphicons-rails (0.1.2)
+      sass (~> 3.3)
+      sass-rails
     i18n (0.8.4)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -150,6 +155,8 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  font-awesome-rails
+  glyphicons-rails
   jbuilder (~> 2.5)
   jquery-rails
   pg (~> 0.18)
