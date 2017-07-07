@@ -1,0 +1,22 @@
+<div id="graduates-by-gender" class="chart-container"></div>
+<script>
+
+    anychart.onDocumentReady(function () {
+        // create pie chart with passed data
+        chart = anychart.pie3d([
+            ['Hombres', 46319],
+            ['Mujeres', 91341]
+        ]);
+
+        // set chart title text settings
+        chart.title('Titulos registrados por género')
+                //set chart radius
+                .radius('43%');
+
+        // set container id for the chart
+        chart.container('graduates-by-gender');
+        // initiate chart drawing
+        chart.draw();
+    });
+
+</script>
