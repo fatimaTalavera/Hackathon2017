@@ -18,3 +18,4 @@
 //= require bootbox.min
 //= require turbolinks
 //= require_tree .
+Rails.application.config.assets.precompile += ['.js', '.css', '.jpg', '.png']
