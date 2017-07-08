@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hackathon2017</title>
-    <%= csrf_meta_tags %>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : 'Sistema de Gestión' %></title>
+  <meta name="description" content="<%%= content_for?(:description) ? yield(:description) : 'Versión 1.0' %>">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <![endif]-->
+</head>
+<body>
 
-  <body>
-    <%= yield %>
-  </body>
+
+
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+
+
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+
+          <div class="navbar-header">
+            <a  href="/" class="pull-left">
+              <img alt="Brand" src=  height="50">
+            </a></div>
+          <ul class="nav navbar-nav">
+                <li class="disabled"><a href="#"><span class="fa fa-user"></span> Gráficos</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+<!-- Ventana Modal -->
+<div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Sistema de Gestión</h4>
+      </div>
+      <div class="modal-body">
+        <p><strong>Sistema de Gestión <br> Versión 1.0 </l> <br> Copyright© 2015 TeamGestión<br> </strong>
+          Sistema de Gestión está diseñado para proporcionar un nivel máximo de funcionalidades para gerenciar su negocio.</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<%= yield %>
 </html>
