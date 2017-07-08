@@ -1,5 +1,14 @@
-class WelcomeController < ApplicationController
-  def index
+class SearchController < ApplicationController
+  
+  def search
+    if params['q'] == 'map'
+      map
+    elsif params['q'] == 'pie_chart'
+      pie_chart
+    end
+  end
+
+  def map
     #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc
     select_raw = "SELECT
                       codigoDepartamento,
@@ -26,7 +35,13 @@ class WelcomeController < ApplicationController
     flash[:notice] = 'Búsqueda realizada correctamente'
     print @result
 
-    render 'welcome/index.html.erb', :locals => { :@result => @result}
+    render :json => @result
 
   end
+
+  def fail_message
+    flash[:warn] = 'La búsqueda falló'
+  end
+
 end
+

@@ -6,11 +6,81 @@
   <div class="dataTable_wrapper">
     <div class="row">
       <div class="col-sm-12">
-
+        <select name="month" id="sale-state">
+          <option value="1" >Enero</option>
+          <option value="2">Febrero</option>
+          <option value="3">Marzo</option>
+          <option value="4" selected="selected">Abril</option>
+        </select>
       </div>
     </div>
   </div>
   <!-- /.panel-body -->
 
+
+  <table class="table table-bordered table-striped data-table-export" role="grid" id="table">
+    <thead>
+    <tr role="row">
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">codigoDepartamento</th>
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">montoVigente</th>
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">montoPlanFinancieroVigente</th>
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">montoEjecutado</th>
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">montoTransferido</th>
+      <th class="sorting" tabindex="0" aria-controls="top_users" rowspan="1" colspan="1">montoPagado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @result.each do |result| -%>
+        <tr>
+          <td><%= result[0]%></td>
+          <td><%= result[1]%></td>
+          <td><%= result[2]%></td>
+          <td><%= result[3] %></td>
+          <td><%= result[4] %></td>
+          <td><%= result[5] %></td>
+
+        </tr>
+    <% end %>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th rowspan="1" colspan="1">codigoDepartamento</th>
+      <th rowspan="1" colspan="1">montoVigente</th>
+      <th rowspan="1" colspan="1">montoPlanFinancieroVigente</th>
+      <th rowspan="1" colspan="1">montoEjecutado</th>
+      <th rowspan="1" colspan="1">montoTransferido</th>
+      <th rowspan="1" colspan="1">montoPagado</th>
+    </tr>
+    </tfoot>
+  </table>
+
+  <label id="label" style="display: none">asdasd</label>
+
   <!-- /.panel -->
 </div>
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $("#sale-state").on("focus", function(){
+        }).change(function(){
+            var self = $(this);
+            var selectedMonth = this.value;
+            $.ajax({
+                method: "POST",
+                headers: {
+                    'X-CSRF-Token': '<%= form_authenticity_token.to_s %>'
+                },
+                url: "search/map",
+                data: { month: selectedMonth}
+            })
+                .done(function( msg ) {
+                    //self.prop('disabled', false);
+                    console.log(msg);
+                    alert( "grafico cambiado");
+                });
+        })
+    })
+</script>
