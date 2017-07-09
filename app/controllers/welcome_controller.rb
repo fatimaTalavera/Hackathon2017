@@ -26,7 +26,11 @@ class WelcomeController < ApplicationController
     flash[:notice] = 'Búsqueda realizada correctamente'
     print @result
 
-    render 'welcome/index.html.erb', :locals => { :@result => @result}
+    raw = 'select nombre, nivelid, entidadid from instituciones order by nombre'
+    @inst = ActiveRecord::Base.connection.exec_query(raw).rows
+
+
+    render 'welcome/index.html.erb', :locals => { :@result => @result, :@inst => @inst}
 
   end
 end

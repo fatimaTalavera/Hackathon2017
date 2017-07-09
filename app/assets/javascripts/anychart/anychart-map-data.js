@@ -14,7 +14,6 @@ anychart.onDocumentReady(function() {
         //initiate map drawing
         map.draw();
     });
-
 });
 function format_currency (number) {
     return 'Gs. ' + parseFloat(number).toFixed(0).replace(/./g, function(c, i, a) {

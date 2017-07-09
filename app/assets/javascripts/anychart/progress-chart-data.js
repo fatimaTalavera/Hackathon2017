@@ -1,6 +1,36 @@
+
+
+
+
 anychart.onDocumentReady(function() {
+    var dataSet;
+    $.ajax({
+        method: "POST",
+        url: "search/progress",
+        data: {}
+    })
+        .done(function( msg ) {
+            //self.prop('disabled', false);
+            console.log(msg[0]);
+            console.log(msg[0][2]);
+            console.log(msg[1][2]);
+            data = [
+                ['ENE', msg[0][1], msg[0][2],0],
+                ['FEB', msg[1][1], msg[1][2],0],
+                ['MAR', msg[2][1], msg[2][2],0],
+                ['ABR', msg[3][1], msg[3][2],0] ];
+            chargeSelect(data);
+            console.log(msg);
+        });
+
+
+
+
+});
+function chargeSelect(data){
     // create data set on our data
-    var dataSet = anychart.data.set(getData());
+    //var dataSet = anychart.data.set(getData());
+    dataSet = anychart.data.set(data);
 
     // map data for the first series, take x from the zero column and value from the first column of data set
     var seriesData_1 = dataSet.mapAs({x: [0], value: [1]});
@@ -76,8 +106,7 @@ anychart.onDocumentReady(function() {
     $( "#item-progress" ).click(function() {
         chart.draw();
     });
-});
-
+}
 function getData() {
     return [
         ['ENE', 10, 30, 15],
@@ -86,11 +115,11 @@ function getData() {
         ['ABR', 15, 40, 6],
         ['MAY', 20, 42, 89],
         ['JUN', 22, 35, 78],
-        ['JUL', 21, 36, 99],
-        ['AGO', 25, 31, 75],
-        ['SEP', 31, 35, 78],
-        ['OCT', 32, 36, 6],
-        ['NOV', 32, 36, 56],
-        ['DIC', 32, 36, 89],
+        ['JUL', 0, 0, 0],
+        ['AGO', 0, 0, 0],
+        ['SEP', 0, 0, 0],
+        ['OCT', 0, 0, 0],
+        ['NOV', 0, 0, 0],
+        ['DIC', 0, 0, 0],
     ]
 }
