@@ -1,9 +1,5 @@
 
-
-
-
 function instituteChanged() {
-    alert(text);
     var e = document.getElementById("institute");
     var value = e.options[e.selectedIndex].value;
     var text = e.options[e.selectedIndex].text;
@@ -14,9 +10,13 @@ function instituteChanged() {
     $.ajax({
         method: "POST",
         url: "search/progress",
-        data: {"nivelid" :nivel, "entidad" :entidad  }
+        data: {"nivelid" :nivel, "entidadid" :entidad  }
     })
         .done(function( msg ) {
+            $('#remove-this').remove();
+
+
+
             //self.prop('disabled', false);
             data = [
                 ['ENE', msg[0][1], msg[0][2],0],

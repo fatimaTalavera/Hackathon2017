@@ -46,6 +46,7 @@ class SearchController < ApplicationController
     render :json => @result
   end
   def progress
+    where_raw =" "
     #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc
     select_raw = "SELECT  mes,
 	                        sum(montoplanfinancierovigente),
@@ -56,16 +57,16 @@ class SearchController < ApplicationController
     unless params[:month].blank?
       where_raw = " WHERE "
       @month = params[:month]
-      where_raw << "pgn_gasto.mes = %{month}" % {month: @month}
+      where_raw << "pg.mes = %{month}" % {month: @month}
     end
 
-    unless params[:institute].nil?
+    unless params[:entidadid].nil?
       if where_raw.blank?
         where_raw = " WHERE "
       end
-      @institute = params[:institute]
-      @entidad = params[:entidad]
-      where_raw << "pnd_meta_fisica.nivelid = %{nivel} and pnd_meta_fisica.entidadid = %{entidad} " % {institute: @institute,entidad: @entidad}
+      @entidad = params[:entidadid]
+      @nivel = params[:nivelid]
+      where_raw << "pnd.nivel_id = %{nivel} and pnd.entidad_id = %{entidad} " % {nivel: @nivel,entidad: @entidad}
     end
 
     group_and_order_raw = " group by mes
@@ -76,6 +77,7 @@ class SearchController < ApplicationController
     query_raw = select_raw + where_raw + group_and_order_raw
     @result = ActiveRecord::Base.connection.exec_query(query_raw).rows
     flash[:notice] = 'Búsqueda realizada correctamente'
+    print @result
     render :json => @result
   end
 
