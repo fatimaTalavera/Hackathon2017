@@ -17,3 +17,7 @@
  *= require_self
  *= style.css
  */
+
+.container-chart{
+    height: 800px;
+}
