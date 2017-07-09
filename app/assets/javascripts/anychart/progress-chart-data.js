@@ -2,6 +2,32 @@
 
 
 
+function instituteChanged() {
+    alert(text);
+    var e = document.getElementById("institute");
+    var value = e.options[e.selectedIndex].value;
+    var text = e.options[e.selectedIndex].text;
+
+    var nivel = value.substring(0, value.indexOf(' '));
+    var entidad =value.substring(value.indexOf(' '), value.lenght);
+
+    $.ajax({
+        method: "POST",
+        url: "search/progress",
+        data: {"nivelid" :nivel, "entidad" :entidad  }
+    })
+        .done(function( msg ) {
+            //self.prop('disabled', false);
+            data = [
+                ['ENE', msg[0][1], msg[0][2],0],
+                ['FEB', msg[1][1], msg[1][2],0],
+                ['MAR', msg[2][1], msg[2][2],0],
+                ['ABR', msg[3][1], msg[3][2],0] ];
+            chargeSelect(data);
+        });
+}
+
+
 anychart.onDocumentReady(function() {
     var dataSet;
     $.ajax({
@@ -11,16 +37,12 @@ anychart.onDocumentReady(function() {
     })
         .done(function( msg ) {
             //self.prop('disabled', false);
-            console.log(msg[0]);
-            console.log(msg[0][2]);
-            console.log(msg[1][2]);
             data = [
                 ['ENE', msg[0][1], msg[0][2],0],
                 ['FEB', msg[1][1], msg[1][2],0],
                 ['MAR', msg[2][1], msg[2][2],0],
                 ['ABR', msg[3][1], msg[3][2],0] ];
             chargeSelect(data);
-            console.log(msg);
         });
 
 
