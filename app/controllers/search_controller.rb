@@ -9,6 +9,45 @@ class SearchController < ApplicationController
   end
 
   def map
+
+    #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc
+    select_raw = "SELECT
+                      codigodepartamento,
+                      avg(presupuestoinicialaprobado),
+                      avg(montovigente),
+                      sum(montoplanfinancierovigente),
+                      sum(montoejecutado),
+                      sum(montotransferido),
+                      sum(montopagado)
+                      FROM pgn_gasto pg
+                      INNER JOIN pnd_meta_fisica pnd on pnd.pre_prod_concat = pg.pre_prod_concat"
+
+    unless params[:month].blank?
+      where_raw = " WHERE "
+      @month = params[:month]
+      where_raw << "pgn_gasto.mes = %{month}" % {month: @month}
+    end
+
+    unless params[:department].nil?
+      if where_raw.blank?
+        where_raw = " WHERE "
+      end
+      @department = params[:department]
+      where_raw << "pgn_gasto.codigodepartamento = %{department} " % {department: @department}
+    end
+
+    group_and_order_raw = " GROUP BY codigodepartamento
+                           ORDER BY codigodepartamento "
+    if where_raw.nil?
+      where_raw = ""
+    end
+    query_raw = select_raw + where_raw + group_and_order_raw
+    @result = ActiveRecord::Base.connection.exec_query(query_raw).rows
+    flash[:notice] = 'Búsqueda realizada correctamente'
+    render :json => @result
+  end
+
+  def maa
     #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc
     select_raw = "SELECT
                       codigoDepartamento,
@@ -28,15 +67,11 @@ class SearchController < ApplicationController
 
     group_and_order_raw = "GROUP BY codigoDepartamento
                            ORDER BY codigoDepartamento"
-
     query_raw = select_raw + where_raw + group_and_order_raw
     @result = ActiveRecord::Base.connection.exec_query(query_raw).rows
-
     flash[:notice] = 'Búsqueda realizada correctamente'
     print @result
-
     render :json => @result
-
   end
 
   def fail_message
