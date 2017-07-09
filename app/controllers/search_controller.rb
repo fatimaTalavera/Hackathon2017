@@ -81,10 +81,19 @@ class SearchController < ApplicationController
     end
     query_raw = select_raw + where_raw + group_and_order_raw
     @result = ActiveRecord::Base.connection.exec_query(query_raw).rows
+
     flash[:notice] = 'Búsqueda realizada correctamente'
-    print @result
-    render :json => @result
+
+    #sin tiempo
+    paid_query = 'SELECT substring(mes,6,8),sum(CAST (avance_costo as numeric)) from plan_accion
+                  where anho = 2017
+                  group by substring(mes,6,8)
+                  order by substring(mes,6,8) asc'
+    @paid_result = ActiveRecord::Base.connection.exec_query(paid_query).rows
+
+    render :json => [@result, @paid_result]
   end
+
 
   def maa
     #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc

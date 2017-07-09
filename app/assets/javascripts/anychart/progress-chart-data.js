@@ -42,12 +42,13 @@ anychart.onDocumentReady(function() {
         data: {}
     })
         .done(function( msg ) {
+            console.log(msg);
             //self.prop('disabled', false);
             data = [
-                ['ENE', msg[0][1], msg[0][2],0],
-                ['FEB', msg[1][1], msg[1][2],0],
-                ['MAR', msg[2][1], msg[2][2],0],
-                ['ABR', msg[3][1], msg[3][2],0] ];
+                ['ENE', msg[0][0][1], msg[0][0][2],msg[1][0][1]],
+                ['FEB', msg[0][1][1], msg[0][1][2],msg[1][0][1]],
+                ['MAR', msg[0][2][1], msg[0][2][2],msg[1][0][1]],
+                ['ABR', msg[0][3][1], msg[0][3][2],msg[1][0][1]] ];
             chargeSelect(data);
         });
 
@@ -115,7 +116,7 @@ function chargeSelect(data){
 
     // create second series with mapped data
     var series_3 = chart.spline(seriesData_3);
-    series_3.name('Abonado');
+    series_3.name('Avance');
     series_3.hoverMarkers()
         .enabled(true)
         .type('circle')
