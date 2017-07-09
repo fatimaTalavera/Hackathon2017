@@ -27,9 +27,19 @@
             </div>
 
             <div id="progress-chart" class="container-chart" STYLE="padding: 30px"></div>
-          <input type="checkbox" data-toggle="toggle" data-width="100" data-onstyle="info"  data-on="Técnico" data-off="Usuario" checked>
-            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+            <input type="checkbox" id="leng3" data-toggle="toggle" data-width="100" data-onstyle="info"  data-on="Técnico" data-off="Usuario" checked>
 
+            <div class="lg lg-tec">
+              <p><strong>Monto Plan Financiero Vigente:</strong> Determina la capacidad real de ejecución. La ejecución presupuestaria se realizará en base a planes financieros, generales e institucionales, de acuerdo con las normas técnicas y la periodicidad que se establezca en la reglamentación. Se tomarán en cuenta el flujo estacional de los ingresos y la capacidad real de ejecución del presupuesto de los organismos y entidades del Estado. Dichos planes financieros servirán de marco de referencia para la programación de caja y la asignación de cuotas. El monto es mensual.</p>
+              <p><strong>Monto Ejecutado:</strong> Compromiso de pago originado en un vínculo jurídico financiero entre un organismo o entidad del Estado y una persona física o jurídica. El monto es mensual.</p>
+              <p><strong>Avance:</strong> Muestra el porcentaje de avance para todos los planes de acción en ejecución, por año y por institución.</p>
+            </div>
+
+            <div class="lg lg-user" style="display: none">
+              <p><strong>Monto Plan Financiero Vigente:</strong> Lo que se dice que se gastará en el mes.</p>
+              <p><strong>Monto Ejecutado:</strong> Lo que realmente se gasta en el mes.</p>
+              <p><strong>Avance:</strong> Muestra el porcentaje de avance para todos los planes de acción en ejecución, por año y por institución.</p>
+            </div>
 
             <ul class="list-inline item-details">
               <li>Client:
@@ -45,11 +55,22 @@
                 </strong>
               </li>
             </ul>
-            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  $("#leng3").change(function() {
+    $('.lg').css('display', 'none');
+    if ($('.toggle').hasClass( "off" )) {
+      $('.lg-tec').css('display', 'block');
+    }else {
+      $('.lg-user').css('display', 'block');
+    }
+  });
+</script>
 

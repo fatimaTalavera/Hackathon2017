@@ -87,10 +87,20 @@
               </tr>
               </tbody>
             </table>
-            <input type="checkbox" data-toggle="toggle" data-width="100" data-onstyle="info" data-on="Técnico" data-off="Usuario" checked>
+            <input type="checkbox" id="leng1" data-toggle="toggle" data-width="100" data-onstyle="info" data-on="Técnico" data-off="Usuario" checked>
 
+            <div class="lg lg-tec">
+              <p><strong>Eje estratégico:</strong> Determina la capacidad real de ejecución. La ejecución presupuestaria se realizará en base a planes financieros, generales e institucionales, de acuerdo con las normas técnicas y la periodicidad que se establezca en la reglamentación. Se tomarán en cuenta el flujo estacional de los ingresos y la capacidad real de ejecución del presupuesto de los organismos y entidades del Estado. Dichos planes financieros servirán de marco de referencia para la programación de caja y la asignación de cuotas. El monto es mensual.</p>
+              <p><strong>Línea transversal:</strong> Compromiso de pago originado en un vínculo jurídico financiero entre un organismo o entidad del Estado y una persona física o jurídica. El monto es mensual.</p>
+              <p><strong>Estrategia:</strong> Muestra el porcentaje de avance para todos los planes de acción en ejecución, por año y por institución.</p>
+            </div>
 
-            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
+            <div class="lg lg-user" style="display: none">
+              <p><strong>Eje estratégico:</strong> Determina la capacidad real de ejecución.</p>
+              <p><strong>Línea transversal:</strong> Compromiso de pago originado en un vínculo jurídico financiero entre un organismo o entidad del Estado y una persona física o jurídica. El monto es mensual.</p>
+              <p><strong>Estrategia:</strong> Muestra el porcentaje de avance para todos los planes de acción en ejecución, por año y por institución.</p>
+            </div>
+
             <ul class="list-inline item-details">
               <li>Client:
                 <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -105,7 +115,7 @@
                 </strong>
               </li>
             </ul>
-            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
           </div>
         </div>
       </div>
@@ -147,3 +157,15 @@
     }
 
 </style>
+
+<script>
+  $("#leng1").change(function() {
+    if ($('.toggle').hasClass( "off" )) {
+      $('.lg-tec').css('display', 'none');
+      $('.lg-user').css('display', 'block');
+    }else {
+      $('.lg-tec').css('display', 'block');
+      $('.lg-user').css('display', 'none');
+    }
+  });
+</script>
