@@ -23,30 +23,27 @@ function format_currency (number) {
 };
 function map_start (map,data) {
     // create map
-
-    console.log(data);
-
     // create data set
     // value = pagado
     var dataSet = anychart.data.set([
-        {'id': 'PY.AS', 'value': 0, 'data': data[0]},
-        {'id': 'PY.AG', 'value': 1, 'data': data[1]},
-        {'id': 'PY.BQ', 'value': 2, 'data': data[2]},
-        {'id': 'PY.CN', 'value': 3, 'data': data[3]},
-        {'id': 'PY.CR', 'value': 4, 'data': data[4]},
-        {'id': 'PY.PH', 'value': 5, 'data': data[5]},
-        {'id': 'PY.SP', 'value': 6, 'data': data[6]},
-        {'id': 'PY.CE', 'value': 7, 'data': data[7]},
-        {'id': 'PY.GU', 'value': 8, 'data': data[8]},
-        {'id': 'PY.MI', 'value': 9, 'data': data[9]},
-        {'id': 'PY.NE', 'value': 10,'data': data[10]},
-        {'id': 'PY.PG', 'value': 11,'data': data[11]},
-        {'id': 'PY.AM', 'value': 12,'data': data[12]},
-        {'id': 'PY.AA', 'value': 13,'data': data[13]},
-        {'id': 'PY.CG', 'value': 14,'data': data[14]},
-        {'id': 'PY.CZ', 'value': 15,'data': data[15]},
-        {'id': 'PY.CY', 'value': 16,'data': data[16]},
-        {'id': 'PY.IT', 'value': 17,'data': data[17]},
+        {'id': 'PY.AS', 'value': data[0][6]*data[0][2]/100, 'data': data[0]},
+        {'id': 'PY.AG', 'value': data[1][6]*data[1][2]/100, 'data': data[1]},
+        {'id': 'PY.BQ', 'value': data[2][6]*data[2][2]/100, 'data': data[2]},
+        {'id': 'PY.CN', 'value': data[3][6]*data[3][2]/100, 'data': data[3]},
+        {'id': 'PY.CR', 'value': data[4][6]*data[4][2]/100, 'data': data[4]},
+        {'id': 'PY.PH', 'value': data[5][6]*data[5][2]/100, 'data': data[5]},
+        {'id': 'PY.SP', 'value': data[6][6]*data[6][2]/100, 'data': data[6]},
+        {'id': 'PY.CE', 'value': data[7][6]*data[7][2]/100, 'data': data[7]},
+        {'id': 'PY.GU', 'value': data[8][6]*data[8][2]/100, 'data': data[8]},
+        {'id': 'PY.MI', 'value': data[9][6]*data[9][2]/100, 'data': data[9]},
+        {'id': 'PY.NE', 'value': data[10][6]*data[10][2]/100,'data': data[10]},
+        {'id': 'PY.PG', 'value': data[11][6]*data[11][2]/100,'data': data[11]},
+        {'id': 'PY.AM', 'value': data[12][6]*data[12][2]/100,'data': data[12]},
+        {'id': 'PY.AA', 'value': data[13][6]*data[13][2]/100,'data': data[13]},
+        {'id': 'PY.CG', 'value': data[14][6]*data[14][2]/100,'data': data[14]},
+        {'id': 'PY.CZ', 'value': data[15][6]*data[15][2]/100,'data': data[15]},
+        {'id': 'PY.CY', 'value': data[16][6]*data[16][2]/100,'data': data[16]},
+        {'id': 'PY.IT', 'value': data[17][6]*data[17][2]/100,'data': data[17]},
     ]);
 
     // create choropleth series
