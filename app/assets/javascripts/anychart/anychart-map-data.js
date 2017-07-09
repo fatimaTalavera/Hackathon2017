@@ -1,3 +1,11 @@
+/*
+ #
+ #autores
+ #Fatima Talavera fa.talavera95@gmail.com
+ #Jerson Paniagua diazpany@gmail.com
+ #
+ */
+
 anychart.onDocumentReady(function() {
     map = anychart.map();
     var data = {};

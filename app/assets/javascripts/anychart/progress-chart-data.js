@@ -1,4 +1,10 @@
-
+/*
+ #
+ #autores
+ #Fatima Talavera fa.talavera95@gmail.com
+ #Jerson Paniagua diazpany@gmail.com
+ #
+ */
 function instituteChanged() {
     var e = document.getElementById("institute");
     var value = e.options[e.selectedIndex].value;

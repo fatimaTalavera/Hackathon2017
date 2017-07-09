@@ -1,3 +1,8 @@
+#
+#autores
+#Fatima Talavera fa.talavera95@gmail.com
+#Jerson Paniagua diazpany@gmail.com
+#
 class WelcomeController < ApplicationController
   def index
     #select codigodepartamento, avg(montovigente) as prom_monto_vigente, avg(montoplanfinancierovigente) as prom_montoplanfinancierovigente, avg(montoejecutado) as prom_montoejecutado, avg(montotransferido) as prom_montotransferido, avg(montopagado) as prom_montopagado from pgn_gasto group by codigodepartamento order by codigodepartamento asc
